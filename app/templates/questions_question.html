@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Question{% endblock %}
+
+{% block content %}
+
+	<h2>{{ question.title }}</h2>
+	<p><blockquote>{{ question.question }}</blockquote></p>
+
+	{% if username %}
+	<h4>How will you vote <strong>{{ username }}</strong>?</h4>
+
+	{% if already_voted %}
+		<p><strong>You have already voted. Are you sure you want to change you vote?</strong></p>
+	{% endif %}
+
+	<form method="post" action="/users/{{ username }}/votes">
+
+		<input type="hidden" name="question" value="{{ question.key }}">
+
+		<div class="control-group">
+			<label class="radio"><input type="radio" name="selection" value="aye"> Yes</label>
+			<label class="radio"><input type="radio" name="selection" value="no"> No</label>
+			<label class="radio"><input type="radio" name="selection" value="dont-care"> Don't care</label>
+			<label class="radio"><input type="radio" name="selection" value="dont-understand"> Don't understand</label>
+		</div>
+		<div class="control-group">
+			<p><button type="submit" class="btn">Vote</button></p>
+		</div>
+
+	</form>
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+	<h1>{{ user.username }}</h1>
+
+	<table class="table">
+
+		<tr><td>MP:</td><td><strong>{{ user.mp }}</strong></td></tr>
+
+		<tr><td>Constituency:</td><td><strong>{{ user.constituency }}</strong></td></tr>
+
+		<tr><td>User/MP both voted on</td><td><strong>{{ comparisons.mp.both_voted_on }} questions</strong></td></tr>
+
+		<tr><td>User/MP matched on</td><td><strong>{{ comparisons.mp.exact_match_on }} questions</strong></td></tr>
+
+		<tr class="warning"><td>Constituency Politmus score</td><td><strong>{{ comparisons.constituency.politmus_score }}</strong> (but this isn't implemented yet).</td></tr>
+
+		<tr class="success"><td>Politmus Score:</td><td><strong>{{ comparisons.mp.politmus_score }}</strong></td></tr>
+
+	</table>
+
+
+	<h3>Unanwsered questions</h3>
+	<ul>
+		{% for question in questions %}
+			<li><a href="/questions/{{ question.key }}?username={{ user.username }}">{{ question.title }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}

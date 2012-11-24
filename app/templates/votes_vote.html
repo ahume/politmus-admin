@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Vote result for {{ vote.title }} {% endblock %}
+
+{% block content %}
+
+	<h2>{{ vote.question.title }}</h2>
+	<p><blockquote>{{ vote.question.question }}</blockquote></p>
+
+	<h3>{{ vote.user_username }} voted {{ vote.selection }}</h3>
+
+{% endblock %}
