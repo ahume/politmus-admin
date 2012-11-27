@@ -28,7 +28,9 @@ class CrudVoteHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 			'selection': self.request.get('selection')
 		})
 
-		self.redirect('/questions/%s?username=%s' % (question, username))
+		utils.add_message("You're vote has been counted.")
+
+		self.redirect('/users/%s' % username)
 
 class UserVoteListHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 

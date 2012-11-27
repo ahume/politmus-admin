@@ -4,11 +4,11 @@
 
 {% block content %}
 
-	<h1>List of Questions</h1>
+	<h1>List of MPs</h1>
 
 	<ul>
-		{% for question in questions %}
-		<li><a href="/questions/{{ question.key }}">{{ question.title }}</a></li>
+		{% for mp in mps %}
+		<li><a href="/mps/{{ mp.slug }}">{{ mp.name }}</a></li>
 		{% endfor %}
 	</ul>
 

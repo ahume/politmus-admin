@@ -11,10 +11,15 @@ class UserProfileHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 	def get(self, username):
 		self.api_calls = []
 		context = self.get_from_api('/users/%s' % username)
-		context['questions'] = self.get_from_api('/users/%s/questions/unanwsered' % username)['questions']
+		data = self.get_from_api('/users/%s/questions' % username)
+		logging.debug(data)
+		context['answered_questions'] = data['answered_questions']
+		context['unanswered_questions'] = data['unanswered_questions']
 		context['api_calls'] = self.api_calls
 
-		logging.debug(dir(template))
+		context['messages'] = utils.get_messages()
+		context['remaining'] = 100 - context['comparisons']['mp']['politmus_score']
+
 		t = template.render('templates/users_user.html', context)
 
 		self.response.out.write(t)

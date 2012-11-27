@@ -26,7 +26,25 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="span10 offset2">
+			<div class="navbar">
+    			<ul class="nav">
+      				<li class="active"><a href="/mps">MPs</a></li>
+      				<li><a href="/users">Users</a></li>
+      				<li><a href="/questions">Questions</a></li>
+    			</ul>
+	  		</div>
+	  	</div>
+	</div>
+	<div class="row">
   		<div class="span10 offset2">
+  			{% if messages %}
+  			<div class="alert alert-success">
+  				{% for message in messages %}
+  					<p>{{ message }}</p>
+  				{% endfor %}
+  			</div>
+  			{% endif %}
 			{% block content %}
 			{% endblock %}
 

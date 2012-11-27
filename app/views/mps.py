@@ -8,20 +8,17 @@ from google.appengine.ext import db
 
 import utils
 
-class QuestionHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
-	def get(self, question_key):
+class MPProfileHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
+	def get(self, slug):
 		self.api_calls = []
-		context = self.get_from_api('/questions/%s' % question_key)
+		context = self.get_from_api('/mps/%s' % slug)
 		context['api_calls'] = self.api_calls
 
-		context['username'] = self.request.get('username')
-
-		logging.debug(dir(template))
-		t = template.render('templates/questions_question.html', context)
+		t = template.render('templates/mps_mp.html', context)
 
 		self.response.out.write(t)
 
-class QuestionListHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
+class MPListHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 	def get(self):
 		self.api_calls = []
 
@@ -31,7 +28,7 @@ class QuestionListHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 			start_index = (page - 1) * 10
 		count = 10
 
-		context = self.get_from_api('/questions?start_index=%s&count=%s' % (start_index, count))
+		context = self.get_from_api('/mps?start_index=%s&count=%s' % (start_index, count))
 		context['api_calls'] = self.api_calls
 		context['page'] = page
 		context['total_pages'] = int(math.ceil(context['total'] / 10))
@@ -39,6 +36,6 @@ class QuestionListHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 			context['total_pages'] = 1
 
 		logging.debug(dir(template))
-		t = template.render('templates/questions_list.html', context)
+		t = template.render('templates/mps_list.html', context)
 
 		self.response.out.write(t)
