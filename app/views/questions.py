@@ -16,7 +16,6 @@ class QuestionHandler(webapp.RequestHandler, utils.PolitmusAPIHandler):
 
 		context['username'] = self.request.get('username')
 
-		logging.debug(dir(template))
 		t = template.render('templates/questions_question.html', context)
 
 		self.response.out.write(t)

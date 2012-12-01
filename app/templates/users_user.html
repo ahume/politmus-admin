@@ -5,7 +5,7 @@
 {% block content %}
 	<h1 style="float:left">{{ user.username }}</h1>
 	
-	<img style="float:right; margin-bottom: 20px" height="100px" src="https://chart.googleapis.com/chart?cht=p3&amp;chs=250x100&amp;chd=t:{{ comparisons.mp.politmus_score }},{{ remaining }}&amp;chl=Score">
+	<!--<img style="float:right; margin-bottom: 20px" height="100px" src="https://chart.googleapis.com/chart?cht=p3&amp;chs=250x100&amp;chd=t:{{ comparisons.mp.politmus_score }},{{ remaining }}&amp;chl=Score">-->
 
 	<table class="table">
 
@@ -32,7 +32,7 @@
 	<h3>Answered questions</h3>
 	<ul>
 		{% for question in answered_questions %}
-			<li><a href="/questions/{{ question.key }}?username={{ user.username }}">{{ question.title }}</a></li>
+			<li><a href="/users/{{ user.username }}/votes/{{ question.key }}">{{ question.title }}</a></li>
 		{% endfor %}
 	</ul>
 {% endblock %}

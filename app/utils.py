@@ -8,8 +8,8 @@ from google.appengine.ext import db
 
 import models
 
-#hostname = 'http://localhost:8085'
-hostname = 'http://politmus-api.appspot.com'
+hostname = 'http://localhost:8080'
+#hostname = 'http://politmus-api.appspot.com'
 
 class PolitmusAPIHandler(object):
 

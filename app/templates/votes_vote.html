@@ -9,4 +9,20 @@
 
 	<h3>{{ vote.user_username }} voted {{ vote.selection }}</h3>
 
+	<form method="post" action="/users/{{ username }}/votes/{{ vote.question.key }}">
+
+		<input type="hidden" name="question" value="{{ vote.question.key }}">
+
+		<div class="control-group">
+			<label class="radio"><input type="radio" name="selection" value="aye"{% ifequal vote.selection "aye" %} checked="checked"{% endifequal %}> Yes</label>
+			<label class="radio"><input type="radio" name="selection" value="no"{% ifequal vote.selection "no" %} checked="checked"{% endifequal %}> No</label>
+			<label class="radio"><input type="radio" name="selection" value="dont-care"{% ifequal vote.selection "dont-care" %} checked="checked"{% endifequal %}> Don't care</label>
+			<label class="radio"><input type="radio" name="selection" value="dont-understand"{% ifequal vote.selection "dont-understand" %} checked="checked"{% endifequal %}> Don't understand</label>
+		</div>
+		<div class="control-group">
+			<p><button type="submit" class="btn">Vote</button></p>
+		</div>
+
+	</form>
+
 {% endblock %}
